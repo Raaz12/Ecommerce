@@ -1,5 +1,4 @@
 import { FlatList, SafeAreaView, View } from "react-native"
-import F34Text from "../Typography/F34Text";
 import BackButton from "../Buttons/BackButton";
 import { getCategory } from "../../Service/getCategory";
 import { useEffect, useState } from "react";

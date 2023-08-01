@@ -18,7 +18,7 @@ interface IImage {
 const ShoesCard = (auto: IImage) => {
   const dispatch = useDispatch();
   const { registerCart } = useCart();
-  console.log(registerCart);
+  // console.log(registerCart);
 
   return (
     <TouchableOpacity

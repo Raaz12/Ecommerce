@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import { Theme } from "../Theme";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BackButton from "../components/Buttons/BackButton";
 import F13Text from "../components/Typography/F13Text";
 import RedButton from "../components/Buttons/RedButton";
@@ -20,12 +20,39 @@ const LoginScreen = ({ navigation }) => {
   const [otp, setOTP] = useState("");
   const [verificationId, setVerifictionId] = useState(null);
   const recapthcaVerifire = useRef(null);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(interval);
+        } else {
+          setSeconds(59);
+          setMinutes(minutes - 1);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
+  const sendOTP = () => {
+    setMinutes(2);
+    setSeconds(59);
+  };
   const sendVerification = () => {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
     phoneProvider
       .verifyPhoneNumber(`+91${mobile}`, recapthcaVerifire.current)
-      .then(setVerifictionId).catch((err) => { alert(err) });
+      .then((res) => { setVerifictionId(res); sendOTP(); alert('OTP sent Succesfully') }).catch((err) => { alert(err) });
     setMobile("");
   };
 
@@ -95,7 +122,7 @@ const LoginScreen = ({ navigation }) => {
               }}
               onPress={sendVerification}
             >
-              <F13Text title="Send OTP" color={Theme.white} />
+              <F13Text title={minutes || seconds ? `0${minutes}:${seconds}` : "Send OTP"} color={Theme.white} />
             </Pressable>
           </View>
         </View>
@@ -120,7 +147,7 @@ const LoginScreen = ({ navigation }) => {
             }}
           />
         </View>
-        <RedButton title="LOGIN" onPress={() => { confirmOtp; navigation.navigate('Main') }} />
+        <RedButton title="LOGIN" onPress={() => { confirmOtp }} />
       </View>
     </SafeAreaView>
   );

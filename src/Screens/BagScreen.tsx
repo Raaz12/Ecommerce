@@ -4,8 +4,9 @@ import BackButton from "../components/Buttons/BackButton"
 import { getCarts } from "../Service/GetCart"
 import CartCard from "../components/card/CartCard"
 import RedButton from "../components/Buttons/RedButton"
+import { navigate } from "../Navigator/util"
 
-const BagScreen = () => {
+const BagScreen = ({ navigation }) => {
     const [cartData, setCartData] = useState([])
     useEffect(() => {
         getCart();
@@ -35,7 +36,7 @@ const BagScreen = () => {
                 )
             }} />
         </View>
-        <RedButton title="CHECK OUT" onPress={() => { }} style={{ marginBottom: 10, }} />
+        <RedButton title="CHECK OUT" onPress={() => { navigation.navigate('CheckoutScreen', []) }} style={{ marginBottom: 10, }} />
     </SafeAreaView>)
 }
 

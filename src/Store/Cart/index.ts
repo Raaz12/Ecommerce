@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const slice = createSlice({
   name: "cart",
   initialState: {
-    cart: [],
+    cart1: [],
     accessToken: "",
   },
   reducers: {
     cart: (state, { payload }) => {
-      state.cart.push(payload.cart);
+      state.cart1 = payload.cart;
     },
     auth: (state, { payload }) => {
       state.accessToken = payload.accessToken;

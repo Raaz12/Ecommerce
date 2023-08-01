@@ -8,6 +8,8 @@ import { getProfileData } from "../Service/getProfileData"
 import { useDispatch } from "react-redux"
 import { auth } from "../Store/Cart"
 import useCart from "../components/Hooks/useCart"
+import RedButton from "../components/Buttons/RedButton"
+import { navigate } from "../Navigator/util"
 
 const data1 = [
     {
@@ -33,12 +35,9 @@ const data1 = [
     },
 
 ]
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
     const [data, setData] = useState()
     const dispatch = useDispatch();
-    const { registerCart } = useCart();
-    // console.log(registerCart);
-
     useEffect(() => {
         getUser()
     }, [])
@@ -57,7 +56,7 @@ const AccountScreen = () => {
     // console.log(data);
 
     return (<SafeAreaView style={{ flex: 1, }}>
-        <BackButton title="My profile" style={{ marginTop: 32, }} />
+        <BackButton title="My profile" style={{ marginVertical: 32, marginHorizontal: 16, }} />
         <View style={{ flex: 1, marginHorizontal: 16 }}>
             <View style={{ flexDirection: 'row', gap: 20, alignItems: 'center' }}>
                 <View style={{ backgroundColor: Theme.white, height: 64, width: 64, borderRadius: 100, }}>
@@ -80,7 +79,7 @@ const AccountScreen = () => {
                     </View>
                 )
             }} />
-
+            <RedButton title="Logout" onPress={() => { navigation.navigate('SignupScreen', {}) }} />
         </View>
     </SafeAreaView>)
 }
