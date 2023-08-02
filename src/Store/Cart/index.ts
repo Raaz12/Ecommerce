@@ -9,7 +9,7 @@ const slice = createSlice({
   reducers: {
     cart: (state, { payload }) => {
       state.cart1 = payload.cart;
-      console.log(payload.cart);
+      // console.log(payload.cart);
     },
     auth: (state, { payload }) => {
       state.accessToken = payload.accessToken;
