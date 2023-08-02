@@ -65,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
       .auth()
       .signInWithCredential(credential)
       .then((res) => {
-        console.log(res);
+        // //console.log(res);
         alert('Signup succesful,welcome to our shoping world')
         navigation.navigate('Main')
 

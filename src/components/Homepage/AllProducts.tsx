@@ -11,7 +11,7 @@ const AllProducts = ({ navigation, route }) => {
     const [categoryData, setCategoryData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
     const [category, setCategory] = useState('electronics');
-    // console.log(data);
+    // //console.log(data);
     useEffect(() => {
         getCategoryData()
     }, [])

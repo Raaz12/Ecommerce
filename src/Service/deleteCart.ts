@@ -10,7 +10,7 @@ export const deleteCarts = (id: string) => {
     url: url,
     headers: {},
   };
-  // console.log(axios.get(url));
+  // //console.log(axios.get(url));
 
   return axios.request(config);
 };

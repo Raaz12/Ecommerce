@@ -10,7 +10,7 @@ import RedButton from '../Buttons/RedButton';
 
 const ProductDetailsPage = ({ navigation, route }) => {
     const data = route.params.data;
-    // console.log(data);
+    // //console.log(data);
 
     return (
         <View style={{ flex: 1 }}>
@@ -36,8 +36,8 @@ const ProductDetailsPage = ({ navigation, route }) => {
                 </View>
             </ScrollView>
             <View style={{ gap: 10, marginBottom: 10 }}>
-                <RedButton title='BUY' onPress={() => { }} />
-                <RedButton title='Add to cart' onPress={() => { }} />
+                <RedButton title='BUY' onPress={() => { navigation.navigate('CheckoutScreen') }} />
+                <RedButton title='Add to cart' onPress={() => { alert('Sorry could not completed this section due to shortage of time') }} />
             </View>
         </View>
     )

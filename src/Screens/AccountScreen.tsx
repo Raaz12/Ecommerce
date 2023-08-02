@@ -7,9 +7,7 @@ import F11Text from "../components/Typography/F11Text"
 import { getProfileData } from "../Service/getProfileData"
 import { useDispatch } from "react-redux"
 import { auth } from "../Store/Cart"
-import useCart from "../components/Hooks/useCart"
 import RedButton from "../components/Buttons/RedButton"
-import { navigate } from "../Navigator/util"
 
 const data1 = [
     {
@@ -53,7 +51,7 @@ const AccountScreen = ({ navigation }) => {
             alert(err)
         })
     }
-    // console.log(data);
+    // //console.log(data);
 
     return (<SafeAreaView style={{ flex: 1, }}>
         <BackButton title="My profile" style={{ marginVertical: 32, marginHorizontal: 16, }} />

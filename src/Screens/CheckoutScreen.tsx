@@ -62,7 +62,7 @@ const CheckoutScreen = ({ navigation, route }) => {
                     <F16Text title="Summary:" color={Theme.Gray} />
                     <F14Text title="127$" />
                 </View>
-                <RedButton title="SUBMIT ORDER" onPress={() => { }} />
+                <RedButton title="SUBMIT ORDER" onPress={() => { alert('Sorry could not completed this section due to shortage of time') }} />
             </View>
         </View>
     );

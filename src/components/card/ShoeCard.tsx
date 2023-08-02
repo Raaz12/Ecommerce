@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, ToastAndroid } from "react-native";
 import F12Text from "../Typography/F12Text";
 import { Theme } from "../../Theme";
 import F16Text from "../Typography/F16Text";
@@ -18,7 +18,7 @@ interface IImage {
 const ShoesCard = (auto: IImage) => {
   const dispatch = useDispatch();
   const { registerCart } = useCart();
-  // console.log(registerCart);
+  // //console.log(registerCart);
 
   return (
     <TouchableOpacity
@@ -60,8 +60,10 @@ const ShoesCard = (auto: IImage) => {
                 title: auto.title,
                 price: auto.price,
               }
-            }))
+            }));
+            ToastAndroid.show('Added to cart', ToastAndroid.LONG)
           }}
+
         >
           <AntDesign name="plus" size={20} color={Theme.white} />
         </TouchableOpacity>

@@ -14,7 +14,7 @@ const BagScreen = ({ navigation }) => {
 
     const getCart = () => {
         getCarts().then((res) => {
-            console.log(res.data.products);
+            // //console.log(res.data.products);
 
             setCartData(res.data.products);
         }).catch((err) => {
@@ -22,13 +22,13 @@ const BagScreen = ({ navigation }) => {
         })
     }
 
-    console.log(cartData);
+    //console.log(cartData);
 
     return (<SafeAreaView style={{ flex: 1, }}>
         <BackButton title="Cart" style={{ marginTop: 32, }} />
         <View style={{ flex: 1, gap: 10 }}>
             <FlatList data={cartData} renderItem={(item) => {
-                // console.log(item.item.products[0].quantity);
+                // //console.log(item.item.products[0].quantity);
 
                 return (
                     // null

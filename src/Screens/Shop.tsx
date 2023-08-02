@@ -1,4 +1,4 @@
-import { FlatList, SafeAreaView, View } from "react-native"
+import { FlatList, SafeAreaView, ToastAndroid, View } from "react-native"
 
 import { useEffect, useState } from "react";
 import { getCategory } from "../Service/getCategory";
@@ -6,13 +6,18 @@ import { Theme } from "../Theme";
 import BackButton from "../components/Buttons/BackButton";
 import ShoesCard from "../components/card/ShoeCard";
 import SmallCard from "../components/card/SmallCard";
+import { getProduct } from "../Service/getProduct";
 
 const ShopScreen = ({ navigation, route }) => {
-  const data = route.params.data;
+  const [data, setData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [category, setCategory] = useState('electronics');
-  // console.log(data);
+  // //console.log(data);
+  useEffect(() => {
+    getData();
+  }, []);
+
   useEffect(() => {
     getCategoryData()
   }, [])
@@ -23,11 +28,19 @@ const ShopScreen = ({ navigation, route }) => {
       alert(err)
     })
   }
-
+  const getData = () => {
+    getProduct()
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        ToastAndroid.show(err, ToastAndroid.LONG);
+      });
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ marginTop: 32 }}>
-        <BackButton title="Popular Items" back onPress={() => { navigation.goBack() }} />
+        <BackButton title="Items" back onPress={() => { navigation.goBack() }} style={{}} />
         <View style={{ height: 50, marginTop: 32 }}>
           <FlatList
             horizontal
@@ -49,7 +62,7 @@ const ShopScreen = ({ navigation, route }) => {
             }}
           />
         </View>
-        <FlatList data={data} numColumns={2} renderItem={item => {
+        <FlatList data={data ? data : []} numColumns={2} renderItem={item => {
           return (
             category === item.item.category && <ShoesCard title={item.item.category} image={item.item.image} price={item.item.price} onPress={() => {
               navigation.navigate('ProductDetailsPage', { data: item.item })
